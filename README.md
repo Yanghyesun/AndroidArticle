@@ -4,9 +4,12 @@
 3️⃣radio button 여러 줄로 처리하는 방법<br/>
 4️⃣constraintlayout의 여러가지 기능<br/>
 5️⃣Bottom sheet Behavior 사용하는 방법<br/>
+
 6️⃣DialogFragment 사용하는 방법 _ _추후 업로드 예정_ <br/>
 7️⃣Calendar 사용하는 방법 _ _추후 업로드 예정_ <br/>
-8️⃣View Pager & Dot Indicator 구현하는 방법
+8️⃣View Pager & Dot Indicator 구현하는 방법 _ _추후 업로드 예정_ <br/>
+9️⃣Drag and Drop 구현하는 방법 _ _추후 업로드 예정_ <br/>
+1️⃣0️⃣카톡 대화창 뷰 구현하는 방법 _ _추후 업로드 예정_ <br/>
 
 🌀계속해서 추가 예정이에요〰️
 <br/>
