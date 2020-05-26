@@ -3,7 +3,9 @@
 2️⃣gif 이미지 처리 방법<br/>
 3️⃣radio button 여러 줄로 처리하는 방법<br/>
 4️⃣constraintlayout의 여러가지 기능<br/>
-5️⃣Bottom sheet Behavior 사용
+5️⃣Bottom sheet Behavior 사용하는 방법<br/>
+6️⃣DialogFragment 사용하는 방법 _ _추후 업로드 예정_ <br/>
+7️⃣Calendar 사용하는 방법 _ _추후 업로드 예정_
 
 🌀계속해서 추가 예정이에요〰️
 <br/>
@@ -162,7 +164,7 @@ implementation 'com.yuxingxin.multiradiogroup:library:1.0.0'
 <br/>
 <br/>
 
-## 📌 Bottom Sheet Behavior 사용
+## 📌 Bottom Sheet Behavior 사용하는 방법
 
 카카오맵에서 장소를 클릭하면 나오는 작은 화면을 기억하시나요❓
 
