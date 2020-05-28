@@ -4,10 +4,10 @@
 3️⃣radio button 여러 줄로 처리하는 방법<br/>
 4️⃣constraintlayout의 여러가지 기능<br/>
 5️⃣Bottom sheet Behavior 사용하는 방법<br/>
+6️⃣DialogFragment 사용하는 방법<br/>
+7️⃣View Pager & Dot Indicator 구현하는 방법<br/>
 
-6️⃣DialogFragment 사용하는 방법 _ _추후 업로드 예정_ <br/>
-7️⃣Calendar 사용하는 방법 _ _추후 업로드 예정_ <br/>
-8️⃣View Pager & Dot Indicator 구현하는 방법 <br/>
+8️⃣Calendar 사용하는 방법 _ _추후 업로드 예정_ <br/>
 9️⃣Drag and Drop 구현하는 방법 _ _추후 업로드 예정_ <br/>
 1️⃣0️⃣카톡 대화창 뷰 구현하는 방법 _ _추후 업로드 예정_ <br/>
 
@@ -276,6 +276,67 @@ bottom_sheet_blur.setOnClickListener {
 
 <br/><br/>
 
+## 📌 DialogFragment 사용하는 방법
+
+custom dialog 를 만들고 싶을 때 사용!<br/>
+1) dialog 2) alertDialog 3)fragmentDialog <br/>
+이렇게 3가지 방법이 있지만 저는 fragmentDialog를 주로 사용합니다 :)
+
+1️⃣Fragment를 생성<br/>
+2️⃣xml 파일에서 원하는 디자인을 입혀준다.<br/>
+3️⃣CustomDialogFragment.kt 파일에서 코드 작성<br/>
+
+* requestFeature(Window.FEATURE_NO_TITLE) : dialog 의 기본 title 디자인을 없애는 처리
+
+* setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT)) : 투명한 뒷배경 처리
+
+* setCancelable() : 검은 영역을 터치 시 dialog 닫기 처리  ➡️  false : 닫기 처리 기능 막기, true : 닫기 처리
+
+* setGravity() : dialog 위치 설정  ➡️  Gravity.LEFT, Gravity.CENTER, Gravity.TOP , ...<br/>
+ ex) Gravity.LEFT or Gravity.TOP 으로 사용시 왼쪽 상단에 위치
+
+```
+class CustomDialogFragment : DialogFragment(){
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+
+        val view = inflater.inflate(R.layout.fragment_custom_dialog, container, false)
+
+        dialog?.window?.requestFeature(Window.FEATURE_NO_TITLE)
+        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog?.setCancelable(false)
+        dialog?.window?.setGravity(Gravity.CENTER)
+
+        return view
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        
+        //dialog 에서 x버튼 누를시 dialog 닫기
+        img_btn_close.setOnClickListener {
+            dismiss()
+        }
+    }
+}
+```
+
+4️⃣Activity 에서 dialog 생성해주기 -> MainActivity.kt 파일 작성
+
+```
+val customDialog = CustomDialogFragment()
+customDialog.show(supportFragmentManager,"custom_fragment")
+```
+
+* dialog를 full screen으로 주고 싶을 때 사용하세요 :)
+
+ customDialog.setStyle(DialogFragment.STYLE_NO_TITLE,android.R.style.Theme_Holo_Light)
+
+<br/><br/>
+
 ## 📌 View Pager & Dot Indicator 구현하는 방법
 
 <img width="379" alt="스크린샷 2020-05-28 오후 5 59 23" src="https://user-images.githubusercontent.com/37995236/83121279-11975a80-a10d-11ea-9f6a-de4bfb7fbd58.png">
@@ -284,7 +345,7 @@ bottom_sheet_blur.setOnClickListener {
 
 ➡️ __View Pager & Tablayout__ 을 이용해서 구현❗️
 
-1️⃣ dot indicator 디자인 만들어주기!(동그란 이미지) -> drawable폴더에 selector_dot_indicator.xml 만들어주기
+1️⃣ dot indicator 디자인 만들어주기!(동그란 이미지) -> drawable폴더에 selector_dot_indicator.xml 생성
 
 ```
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
@@ -309,7 +370,7 @@ bottom_sheet_blur.setOnClickListener {
 </selector>
 ```
 
-2️⃣view pager & tablayout 화면 만들어주기! -> activity_main.xml 만들기
+2️⃣view pager & tablayout 화면 만들어주기! -> activity_main.xml 파일 작성
 
 ```
 <androidx.viewpager.widget.ViewPager
@@ -327,7 +388,7 @@ bottom_sheet_blur.setOnClickListener {
     app:tabIndicatorHeight="0dp" />
 ```
 
-3️⃣view pager 안에 화면을 fragment로 구현 -> fragment_view.xml 만들어주기<br/>
+3️⃣view pager 안에 화면을 fragment로 구현 -> fragment_view.xml 파일 작성<br/>
 저는 위의 화면과 똑같이 만들었습니다 :) 나중에 쓸때는 디자인마다 다르겠죠?
 
 ```
@@ -354,7 +415,7 @@ bottom_sheet_blur.setOnClickListener {
 자, xml 파일은 다 만들었는데 기능을 입혀봅시다〰️
 <br/>
 
-4️⃣ViewpagerAdapter 파일 만들기! -> ViewpagerAdapter.kt 만들어주기
+4️⃣ViewpagerAdapter 파일 만들기! -> ViewpagerAdapter.kt 파일 작성
 
 ```
 class ViewpagerAdapter(fm: FragmentManager, private val page_count: Int) : FragmentStatePagerAdapter(fm){
@@ -370,7 +431,7 @@ class ViewpagerAdapter(fm: FragmentManager, private val page_count: Int) : Fragm
 }
 ```
 
-5️⃣각 화면다다 Fragment 처리 -> ViewFragment.kt 작성( fragment_view.xml 파일과 연동)
+5️⃣각 화면다다 Fragment 처리 -> ViewFragment.kt 파일 작성( fragment_view.xml 파일과 연동)
 
 ```
 class ViewFragment : Fragment() {
@@ -414,7 +475,7 @@ class ViewFragment : Fragment() {
 }
 ```
 
-6️⃣Activity 에서 adapter 연결해주기 -> MainActivity.kt 작성
+6️⃣Activity 에서 adapter 연결해주기 -> MainActivity.kt 파일 작성
 ```
 vp_home.adapter = ViewPagerAdapter(fragmentManager,4)
 vp_home.offscreenPageLimit = 3
