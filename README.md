@@ -279,11 +279,11 @@ bottom_sheet_blur.setOnClickListener {
 ## 📌 DialogFragment 사용하는 방법
 
 custom dialog 를 만들고 싶을 때 사용!<br/>
-1) dialog 2) alertDialog 3)fragmentDialog <br/>
+1. dialog 2. alertDialog 3.fragmentDialog <br/>
 이렇게 3가지 방법이 있지만 저는 fragmentDialog를 주로 사용합니다 :)
 
 1️⃣Fragment를 생성<br/>
-2️⃣xml 파일에서 원하는 디자인을 입혀준다.<br/>
+2️⃣xml 파일에서 원하는 디자인을 생성<br/>
 3️⃣CustomDialogFragment.kt 파일에서 코드 작성<br/>
 
 * requestFeature(Window.FEATURE_NO_TITLE) : dialog 의 기본 title 디자인을 없애는 처리
@@ -333,7 +333,7 @@ customDialog.show(supportFragmentManager,"custom_fragment")
 
 * dialog를 full screen으로 주고 싶을 때 사용하세요 :)
 
- customDialog.setStyle(DialogFragment.STYLE_NO_TITLE,android.R.style.Theme_Holo_Light)
+ customDialog.setStyle(DialogFragment.STYLE_NO_TITLE,android.R.style.Theme_NoTitleBar_Fullscreen)
 
 <br/><br/>
 
