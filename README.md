@@ -205,8 +205,19 @@ implementation 'com.yuxingxin.multiradiogroup:library:1.0.0'
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         
-        
         <!-- 원래 뷰 화면 영역 -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <Button
+                android:id="@+id/btn_show"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="보여지기"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
         
         
         <!-- bottom sheet가 보여지면 뒷배경 처리 -->
@@ -236,23 +247,31 @@ implementation 'com.yuxingxin.multiradiogroup:library:1.0.0'
 ```
  val bottomSheet: BottomSheetBehavior<View> = BottomSheetBehavior.from(bottom_sheet_view)
  bottomSheet.state = BottomSheetBehavior.STATE_HIDDEN
- bottomSheet.setBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback(){
-            override fun onSlide(bottomSheet: View, slideOffset: Float) {
+ bottomSheet.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback(){
+       override fun onSlide(bottomSheet: View, slideOffset: Float) {
 
-            }
-            override fun onStateChanged(bottomSheet: View, newState: Int) {
-                when(newState){
-                    BottomSheetBehavior.STATE_COLLAPSED -> {
-                        bottom_sheet_blur.visibility = View.VISIBLE
-                        bottom_sheet_view.visibility = View.VISIBLE
-                    }
-                    BottomSheetBehavior.STATE_HIDDEN -> {
-                        bottom_sheet_blur.visibility = View.INVISIBLE
-                        bottom_sheet_view.visibility = View.INVISIBLE
-                    }
-                }
-            }
-        })
+       }
+       override fun onStateChanged(bottomSheet: View, newState: Int) {
+           when(newState){
+               BottomSheetBehavior.STATE_COLLAPSED -> {
+                   bottom_sheet_blur.visibility = View.VISIBLE
+                   bottom_sheet_view.visibility = View.VISIBLE
+               }
+               BottomSheetBehavior.STATE_HIDDEN -> {
+                   bottom_sheet_blur.visibility = View.INVISIBLE
+                   bottom_sheet_view.visibility = View.INVISIBLE
+               }
+           }
+       }
+})
+//버튼 클릭시 bottom_sheet 보여지기
+btn_show.setOnClickListener {
+    bottomSheet.state = BottomSheetBehavior.STATE_COLLAPSED
+}
+//뒷배경 클릭시 bottom_sheet 숨겨지기
+bottom_sheet_blur.setOnClickListener {
+    bottomSheet.state = BottomSheetBehavior.STATE_HIDDEN
+}
  ```
 
 <br/><br/>
