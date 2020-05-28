@@ -7,7 +7,7 @@
 
 6️⃣DialogFragment 사용하는 방법 _ _추후 업로드 예정_ <br/>
 7️⃣Calendar 사용하는 방법 _ _추후 업로드 예정_ <br/>
-8️⃣View Pager & Dot Indicator 구현하는 방법 _ _추후 업로드 예정_ <br/>
+8️⃣View Pager & Dot Indicator 구현하는 방법 <br/>
 9️⃣Drag and Drop 구현하는 방법 _ _추후 업로드 예정_ <br/>
 1️⃣0️⃣카톡 대화창 뷰 구현하는 방법 _ _추후 업로드 예정_ <br/>
 
@@ -178,7 +178,7 @@ implementation 'com.yuxingxin.multiradiogroup:library:1.0.0'
 
 <br/>
 
-1️⃣Bottom Sheet 뷰 만들기<br/>
+1️⃣Bottom Sheet 뷰 만들어주기 -> bottom_sheet_view.xml 파일 만들기 <br/>
 * layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior" 필수로 설정 ❗️
 * behavior_peekHeight : bottom sheet 뷰의 기본 높이를 설정
 * behavior_hideable : 사용시 스크롤시 true면 숨겨지고, false면 숨겨지지 않도록 설정
@@ -199,7 +199,7 @@ implementation 'com.yuxingxin.multiradiogroup:library:1.0.0'
 </androidx.constraintlayout.widget.ConstraintLayout>
 ```
 
-2️⃣CoordinatorLayout 태그 이용<br/>
+2️⃣CoordinatorLayout 태그 이용 -> activity_main.xml 파일 만들기<br/>
 ```
 <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -254,3 +254,99 @@ implementation 'com.yuxingxin.multiradiogroup:library:1.0.0'
             }
         })
  ```
+
+<br/><br/>
+
+## 📌 View Pager & Dot Indicator 구현하는 방법
+
+<img width="379" alt="스크린샷 2020-05-28 오후 5 59 23" src="https://user-images.githubusercontent.com/37995236/83121279-11975a80-a10d-11ea-9f6a-de4bfb7fbd58.png">
+
+이런 화면 앱에서 많이 보셨죠? 어떻게 구현할까요?
+
+➡️ __View Pager & Tablayout__ 을 이용해서 구현❗️
+
+1️⃣ dot indicator 디자인 만들어주기!(동그란 이미지) -> drawable폴더에 selector_dot_indicator.xml 만들어주기
+
+```
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_selected="false">
+        <shape
+            android:innerRadius="0dp"
+            android:shape="ring"
+            android:thickness="6dp"
+            android:useLevel="false">
+            <solid android:color="@color/colorGrey"/>
+        </shape>
+    </item>
+    <item android:state_selected="true">
+        <shape
+            android:innerRadius="0dp"
+            android:shape="ring"
+            android:thickness="6dp"
+            android:useLevel="false">
+            <solid android:color="@color/colorOver4"/>
+        </shape>
+    </item>
+</selector>
+```
+
+2️⃣view pager & tablayout 화면 만들어주기! -> activity_main.xml 만들기
+
+```
+<androidx.viewpager.widget.ViewPager
+    android:id="@+id/vp_home"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" />
+
+<com.google.android.material.tabs.TabLayout
+    android:id="@+id/tl_home"
+    android:layout_width="match_parent"
+    android:layout_height="20dp"
+    app:layout_constraintBottom_toBottomOf="@+id/vp_home"
+    app:tabBackground="@drawable/selector_dot_indicator"
+    app:tabGravity="center"
+    app:tabIndicatorHeight="0dp" />
+```
+
+3️⃣view pager 안에 화면을 fragment로 구현 -> fragment.xml 만들어주기<br/>
+저는 위의 화면과 똑같이 만들었습니다 :) 나중에 쓸때는 디자인마다 다르겠죠?
+
+```
+<androidx.constraintlayout.widget.ConstraintLayout
+     android:layout_width="match_parent"
+     android:layout_height="match_parent">
+     <ImageView
+         android:id="@+id/img_ad"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"/>
+
+     <TextView
+         android:id="@+id/txt_ad"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         app:layout_constraintBottom_toBottomOf="parent"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+```
+
+<br/>
+자, xml 파일은 다 만들었는데 기능을 입혀봅시다〰️
+<br/>
+
+4️⃣ViewpagerAdapter 파일 만들기! -> ViewpagerAdapter.kt 만들어주기
+
+```
+class ViewpagerAdapter(fm: FragmentManager, private val page_count: Int) : FragmentStatePagerAdapter(fm){
+    override fun getItem(position: Int): Fragment {
+        val viewFragment = ViewFragment()
+        val bundle = Bundle(page_count)
+        bundle.putInt("id",position)
+        viewFragment.arguments = bundle
+        return viewFragment
+    }
+
+    override fun getCount(): Int = page_count
+}
+```
