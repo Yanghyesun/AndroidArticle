@@ -236,7 +236,7 @@ implementation 'com.yuxingxin.multiradiogroup:library:1.0.0'
 
 ```
 
-3️⃣kotlin 처리
+3️⃣Activity에서 기능 처리 -> MainActivity.kt 파일 작성
 * BottomSheetBehavior.from() 메서드로 bottome sheet 설정
 * state
 
