@@ -308,7 +308,7 @@ implementation 'com.yuxingxin.multiradiogroup:library:1.0.0'
     app:tabIndicatorHeight="0dp" />
 ```
 
-3️⃣view pager 안에 화면을 fragment로 구현 -> fragment.xml 만들어주기<br/>
+3️⃣view pager 안에 화면을 fragment로 구현 -> fragment_view.xml 만들어주기<br/>
 저는 위의 화면과 똑같이 만들었습니다 :) 나중에 쓸때는 디자인마다 다르겠죠?
 
 ```
@@ -349,4 +349,55 @@ class ViewpagerAdapter(fm: FragmentManager, private val page_count: Int) : Fragm
 
     override fun getCount(): Int = page_count
 }
+```
+
+5️⃣각 화면다다 Fragment 처리 -> ViewFragment.kt 작성( fragment_view.xml 파일과 연동)
+
+```
+class ViewFragment : Fragment() {
+    var view_id = 0
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_view, container, false)
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        view_id = arguments!!.getInt("id")
+        init()
+    }
+
+    private fun init(){
+        when(view_id){
+            0 -> {
+                img_ad.setBackgroundColor(Color.GRAY)
+                txt_ad.text="광고1"
+            }
+            1 -> {
+                img_ad.setBackgroundColor(Color.BLUE)
+                txt_ad.text="광고2"
+            }
+            2 -> {
+                img_ad.setBackgroundColor(Color.CYAN)
+                txt_ad.text="광고3"
+            }
+            3 -> {
+                img_ad.setBackgroundColor(Color.MAGENTA)
+                txt_ad.text="광고4"
+            }
+        }
+
+    }
+}
+```
+
+6️⃣Activity 에서 adapter 연결해주기 -> MainActivity.kt 작성
+```
+vp_home.adapter = ViewPagerAdapter(fragmentManager,4)
+vp_home.offscreenPageLimit = 3
+tl_home.setupWithViewPager(vp_home)
 ```
