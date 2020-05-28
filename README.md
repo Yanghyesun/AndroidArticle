@@ -178,7 +178,7 @@ implementation 'com.yuxingxin.multiradiogroup:library:1.0.0'
 
 <br/>
 
-1️⃣Bottom Sheet 뷰 만들어주기 -> bottom_sheet_view.xml 파일 만들기 <br/>
+1️⃣Bottom Sheet 뷰 만들어주기 -> res폴더에서 bottom_sheet_view.xml 파일 만들기 <br/>
 * layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior" 필수로 설정 ❗️
 * behavior_peekHeight : bottom sheet 뷰의 기본 높이를 설정
 * behavior_hideable : 사용시 스크롤시 true면 숨겨지고, false면 숨겨지지 않도록 설정
