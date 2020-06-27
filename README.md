@@ -17,9 +17,13 @@
 
 9️⃣[Calendar 사용하는 방법](https://github.com/Yanghyesun/AndroidArticle/blob/master/09.md)
 
+1️⃣0️⃣[Img 파일 업로드](https://github.com/Yanghyesun/AndroidArticle/blob/master/10.md)
+
+1️⃣1️⃣[Drag and Drop 구현하는 방법](https://github.com/Yanghyesun/AndroidArticle/blob/master/11.md)
+
+
 <br/>
-1️⃣0️⃣Imageview에 그라데이션 넣기 _ _추후 업로드 예정_ <br/>
-1️⃣1️⃣Drag and Drop 구현하는 방법 _ _추후 업로드 예정_ <br/>
+
 1️⃣2️⃣카톡 대화창 뷰 구현하는 방법 _ _추후 업로드 예정_ <br/>
 <br/>
 
