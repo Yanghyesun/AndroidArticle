@@ -25,11 +25,13 @@
 
 1️⃣3️⃣[CoordinatorLayout 구현하는 방법 - toolbar 확장/축소되는 뷰](https://github.com/Yanghyesun/AndroidArticle/blob/master/13.md)
 
+1️⃣4️⃣[lottie 사용](https://github.com/Yanghyesun/AndroidArticle/blob/master/14.md)
+
 <br>
 <br>
 
-1️⃣4️⃣카톡 대화창 뷰 구현하는 방법 _ _추후 업로드 예정_ <br/>
-1️⃣5️⃣lottie 사용 _ _추후 업로드 예정_ <br/>
+
+1️⃣5️⃣카톡 대화창 뷰 구현하는 방법 _ _추후 업로드 예정_ <br/>
 1️⃣6️⃣chart 사용 _ _추후 업로드 예정_ <br/>
 <br/>
 
