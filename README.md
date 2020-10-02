@@ -29,10 +29,12 @@
 
 1️⃣5️⃣[recycler view 재사용 문제 - 스크롤시 생기는 현상](https://github.com/Yanghyesun/AndroidArticle/blob/master/article/15.md)
 
+1️⃣6️⃣[koin 사용 방법](https://github.com/Yanghyesun/AndroidArticle/blob/master/article/16.md)
+
 <br>
 <br>
 
-1️⃣6️⃣카톡 대화창 뷰 구현하는 방법 _ _추후 업로드 예정_ <br/>
+카톡 대화창 뷰 구현하는 방법 _ _추후 업로드 예정_ <br/>
 
 <br/>
 
